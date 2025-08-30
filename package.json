@@ -1,0 +1,25 @@
+{
+  "name": "zerker-logo-package",
+  "version": "1.0.0",
+  "description": "Zerker brand identity and logo package for press releases",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "live-server"
+  },
+  "keywords": [
+    "zerker",
+    "logo",
+    "brand",
+    "press",
+    "AI",
+    "security",
+    "deepfake",
+    "media verification"
+  ],
+  "author": "Zerker Inc.",
+  "license": "Proprietary",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZERKER | Platinum Enhanced</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        :root {
+            --platinum: #FAFAFA;
+            --obsidian: #000000;
+            --graphite: #1A1A1A;
+            --smoke: #F5F5F5;
+            --accent: #0066FF;
+            --emerald: #10B981;
+            --sapphire: #3B82F6;
+            --amber: #F59E0B;
+            --rose: #F43F5E;
+            --violet: #8B5CF6;
+        }
+        
+        /* Theme System */
+        [data-theme="platinum"] {
+            --bg-primary: #F9F9F9;
+            --bg-secondary: #FFFFFF;
+            --bg-tertiary: #F5F5F5;
+            --text-primary: #000000;
+            --text-secondary: #6B7280;
+            --text-muted: #9CA3AF;
+            --accent-color: #0066FF;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        [data-theme="obsidian"] {
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #1A1A1A;
+            --bg-tertiary: #2A2A2A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #D1D5DB;
+            --text-muted: #9CA3AF;
+            --accent-color: #60A5FA;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+        
+        [data-theme="sapphire"] {
+            --bg-primary: #1E3A8A;
+            --bg-secondary: #1E40AF;
+            --bg-tertiary: #2563EB;
+            --text-primary: #FFFFFF;
+            --text-secondary: #DBEAFE;
+            --text-muted: #93C5FD;
+            --accent-color: #60A5FA;
+            --border-color: rgba(255, 255, 255, 0.2);
+            --shadow-color: rgba(30, 58, 138, 0.3);
+        }
+        
+        [data-theme="emerald"] {
+            --bg-primary: #064E3B;
+            --bg-secondary: #065F46;
+            --bg-tertiary: #047857;
+            --text-primary: #FFFFFF;
+            --text-secondary: #D1FAE5;
+            --text-muted: #6EE7B7;
+            --accent-color: #34D399;
+            --border-color: rgba(255, 255, 255, 0.2);
+            --shadow-color: rgba(6, 78, 59, 0.3);
+        }
+        
+        [data-theme="amber"] {
+            --bg-primary: #78350F;
+            --bg-secondary: #92400E;
+            --bg-tertiary: #B45309;
+            --text-primary: #FFFFFF;
+            --text-secondary: #FEF3C7;
+            --text-muted: #FCD34D;
+            --accent-color: #FBBF24;
+            --border-color: rgba(255, 255, 255, 0.2);
+            --shadow-color: rgba(120, 53, 15, 0.3);
+        }
+        
+        [data-theme="rose"] {
+            --bg-primary: #9F1239;
+            --bg-secondary: #BE185D;
+            --bg-tertiary: #E11D48;
+            --text-primary: #FFFFFF;
+            --text-secondary: #FCE7F3;
+            --text-muted: #F9A8D4;
+            --accent-color: #FB7185;
+            --border-color: rgba(255, 255, 255, 0.2);
+            --shadow-color: rgba(159, 18, 57, 0.3);
+        }
+        
+        [data-theme="violet"] {
+            --bg-primary: #581C87;
+            --bg-secondary: #6B21A8;
+            --bg-tertiary: #7C3AED;
+            --text-primary: #FFFFFF;
+            --text-secondary: #EDE9FE;
+            --text-muted: #C4B5FD;
+            --accent-color: #A78BFA;
+            --border-color: rgba(255, 255, 255, 0.2);
+            --shadow-color: rgba(88, 28, 135, 0.3);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            cursor: none;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0A0F14 0%, #1A202C 25%, #2D3748 50%, #1A365D 75%, #0C1929 100%);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        /* Ambient background - Same as brand-index */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at top left, rgba(9, 105, 218, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at bottom right, rgba(31, 136, 61, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Static pattern overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.01) 35px, rgba(255,255,255,.01) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,.01) 35px, rgba(255,255,255,.01) 70px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.02;
+        }
+        
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--text-primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: all 0.1s ease;
+            z-index: 9999;
+            opacity: 0.7;
+        }
+        
+        .cursor-dot {
+            width: 4px;
+            height: 4px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.8;
+        }
+        
+        /* Premium Typography */
+        .hero-title {
+            font-size: clamp(8rem, 15vw, 20rem);
+            font-weight: 100;
+            line-height: 0.8;
+            letter-spacing: -0.04em;
+            margin: 0;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-color));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-title {
+            font-size: clamp(4rem, 8vw, 10rem);
+            font-weight: 100;
+            line-height: 0.85;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+        }
+        
+        .statement {
+            font-size: clamp(2rem, 4vw, 4rem);
+            font-weight: 200;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+        
+        /* Container System */
+        .platinum-container {
+            width: 100%;
+            max-width: 2400px;
+            margin: 0 auto;
+            padding: 0 80px;
+        }
+        
+        @media (max-width: 768px) {
+            .platinum-container {
+                padding: 0 20px;
+            }
+        }
+        
+        /* Navigation */
+        .nav-minimal {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 40px 80px;
+            background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-minimal.scrolled {
+            background: var(--bg-primary);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px var(--shadow-color);
+        }
+        
+        .nav-minimal a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-minimal a:hover {
+            opacity: 0.6;
+        }
+        
+        /* Split Sections */
+        .split-section {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        @media (max-width: 1024px) {
+            .split-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Premium Buttons */
+        .cta-premium {
+            display: inline-flex;
+            padding: 20px 60px;
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-color);
+            transition: left 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .cta-premium:hover::before {
+            left: 0;
+        }
+        
+        .cta-premium span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            background: var(--bg-secondary);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3px;
+            box-shadow: 0 4px 16px var(--shadow-color);
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .dark-mode-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px var(--shadow-color);
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            left: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        
+        .dark-mode-toggle.dark .toggle-slider {
+            left: 29px;
+        }
+        
+        .toggle-icon {
+            width: 10px;
+            height: 10px;
+            color: var(--bg-primary);
+            transition: all 0.3s ease;
+        }
+        
+        /* Additional Theme Options (Hidden by default) */
+        .theme-selector {
+            position: fixed;
+            bottom: 80px;
+            right: 30px;
+            z-index: 2000;
+            background: var(--bg-secondary);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 0 8px 32px var(--shadow-color);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+        }
+        
+        .theme-selector.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .theme-option {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+        }
+        
+        .theme-option:last-child {
+            margin-bottom: 0;
+        }
+        
+        .theme-option:hover {
+            transform: scale(1.1);
+        }
+        
+        .theme-option.active {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 1px var(--accent-color);
+        }
+        
+        .theme-sapphire { 
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+        }
+        .theme-emerald { 
+            background: linear-gradient(135deg, #064E3B 0%, #10B981 100%);
+        }
+        .theme-amber { 
+            background: linear-gradient(135deg, #78350F 0%, #F59E0B 100%);
+        }
+        .theme-rose { 
+            background: linear-gradient(135deg, #9F1239 0%, #F43F5E 100%);
+        }
+        .theme-violet { 
+            background: linear-gradient(135deg, #581C87 0%, #8B5CF6 100%);
+        }
+        
+        /* Theme reveal button */
+        .theme-reveal {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 2000;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px var(--shadow-color);
+        }
+        
+        .theme-reveal:hover {
+            transform: scale(1.1);
+            background: var(--accent-color);
+        }
+        
+        .theme-reveal svg {
+            width: 16px;
+            height: 16px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .theme-reveal:hover svg {
+            color: var(--bg-primary);
+        }
+        
+        /* Animations */
+        .hover-lift {
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        /* Loading screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-primary);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease;
+        }
+        
+        .loading-text {
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: pulse 2s ease-in-out infinite;
+            color: var(--text-primary);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .loading-bar {
+            width: 100%;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-color) 50%, rgba(255,255,255,0.2) 50%);
+            background-size: 200% 100%;
+        }
+        
+        /* Enhanced Sections */
+        .capability-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .capability-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 64px var(--shadow-color);
+            border-color: var(--accent-color);
+        }
+        
+        .metric-large {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 100;
+            color: var(--accent-color);
+            line-height: 0.8;
+        }
+        
+        /* Image enhancements */
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+        
+        .geometric-element {
+            opacity: 0.08;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .geometric-element:hover {
+            opacity: 0.15;
+            transform: scale(1.02);
+        }
+        
+        /* Enhanced Visual Effects */
+        .neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 1;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .neural-node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            animation: pulse-node 4s ease-in-out infinite;
+            box-shadow: 0 0 10px var(--accent-color);
+            opacity: 0.6;
+        }
+        
+        .neural-connection {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            animation: data-flow 3s ease-in-out infinite;
+            opacity: 0.4;
+        }
+        
+        @keyframes pulse-node {
+            0%, 100% { 
+                opacity: 0.3; 
+                transform: scale(1);
+                box-shadow: 0 0 5px var(--accent-color);
+            }
+            50% { 
+                opacity: 0.8; 
+                transform: scale(1.5);
+                box-shadow: 0 0 20px var(--accent-color);
+            }
+        }
+        
+        @keyframes data-flow {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.8; }
+        }
+        
+        /* Scan line effect */
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            animation: scan 6s ease-in-out infinite;
+            opacity: 0.5;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+        
+        @keyframes scan {
+            0%, 100% { top: 0%; opacity: 0.3; }
+            50% { top: 100%; opacity: 0.8; }
+        }
+        
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.4; }
+            25% { transform: translateY(-30px) translateX(15px) scale(1.2); opacity: 0.8; }
+            50% { transform: translateY(-15px) translateX(-15px) scale(0.8); opacity: 0.6; }
+            75% { transform: translateY(-40px) translateX(10px) scale(1.1); opacity: 0.7; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .split-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .theme-selector {
+                right: 10px;
+                padding: 12px;
+            }
+            
+            .theme-option {
+                width: 36px;
+                height: 36px;
+                margin-bottom: 8px;
+            }
+        }
+    </style>
+</head>
+<body data-theme="platinum">
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="relative">
+            <div class="loading-text mb-4">ZERKER PLATINUM</div>
+            <div class="w-32 h-0.5 mx-auto overflow-hidden" style="background: var(--border-color);">
+                <div class="h-full loading-bar" style="background: var(--text-primary);"></div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Additional Theme Options (Hidden) -->
+    <div class="theme-selector" id="themeSelector">
+        <div class="theme-option theme-sapphire" data-theme="sapphire" title="Sapphire Blue"></div>
+        <div class="theme-option theme-emerald" data-theme="emerald" title="Emerald Green"></div>
+        <div class="theme-option theme-amber" data-theme="amber" title="Amber Gold"></div>
+        <div class="theme-option theme-rose" data-theme="rose" title="Rose Pink"></div>
+        <div class="theme-option theme-violet" data-theme="violet" title="Violet Purple"></div>
+    </div>
+    
+    <!-- Theme Reveal Button -->
+    <div class="theme-reveal" id="themeReveal" title="More Themes">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+        </svg>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="nav-minimal">
+        <div class="flex justify-between items-center">
+            <a href="#" class="hover-lift font-semibold">ZERKER</a>
+            <div class="flex items-center gap-12">
+                <div class="flex gap-12">
+                    <a href="#vision" class="hover-lift hidden md:block">VISION</a>
+                    <a href="#capability" class="hover-lift hidden md:block">CAPABILITY</a>
+                    <a href="#contact" class="hover-lift">CONTACT</a>
+                </div>
+                <!-- Dark Mode Toggle in Navigation -->
+                <div class="dark-mode-toggle" id="darkModeToggle">
+                    <div class="toggle-slider">
+                        <svg class="toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Visualization removed for clean gradient background -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden" style="z-index: 1; display: none;">
+            <svg viewBox="0 0 1200 800" class="w-full h-full" style="display: none;">
+                <!-- Input Modalities -->
+                <g id="inputs">
+                    <!-- Video Input -->
+                    <g transform="translate(50, 100)">
+                        <rect width="80" height="50" rx="8" stroke="var(--accent-color)" stroke-width="1" fill="none" opacity="0.6"/>
+                        <text x="40" y="30" text-anchor="middle" fill="var(--accent-color)" font-size="10" opacity="0.8">VIDEO</text>
+                        <circle cx="90" cy="25" r="3" fill="var(--accent-color)" opacity="0.8">
+                        </circle>
+                    </g>
+                    
+                    <!-- Audio Input -->
+                    <g transform="translate(50, 200)">
+                        <rect width="80" height="50" rx="8" stroke="var(--accent-color)" stroke-width="1" fill="none" opacity="0.6"/>
+                        <text x="40" y="30" text-anchor="middle" fill="var(--accent-color)" font-size="10" opacity="0.8">AUDIO</text>
+                        <circle cx="90" cy="25" r="3" fill="var(--accent-color)" opacity="0.8">
+                        </circle>
+                    </g>
+                    
+                    <!-- Image Input -->
+                    <g transform="translate(50, 300)">
+                        <rect width="80" height="50" rx="8" stroke="var(--accent-color)" stroke-width="1" fill="none" opacity="0.6"/>
+                        <text x="40" y="30" text-anchor="middle" fill="var(--accent-color)" font-size="10" opacity="0.8">IMAGE</text>
+                        <circle cx="90" cy="25" r="3" fill="var(--accent-color)" opacity="0.8">
+                        </circle>
+                    </g>
+                    
+                    <!-- Text Input -->
+                    <g transform="translate(50, 400)">
+                        <rect width="80" height="50" rx="8" stroke="var(--accent-color)" stroke-width="1" fill="none" opacity="0.6"/>
+                        <text x="40" y="30" text-anchor="middle" fill="var(--accent-color)" font-size="10" opacity="0.8">TEXT</text>
+                        <circle cx="90" cy="25" r="3" fill="var(--accent-color)" opacity="0.8">
+                        </circle>
+                    </g>
+                    
+                    <!-- Metadata Input -->
+                    <g transform="translate(50, 500)">
+                        <rect width="80" height="50" rx="8" stroke="var(--accent-color)" stroke-width="1" fill="none" opacity="0.6"/>
+                        <text x="40" y="30" text-anchor="middle" fill="var(--accent-color)" font-size="10" opacity="0.8">META</text>
+                        <circle cx="90" cy="25" r="3" fill="var(--accent-color)" opacity="0.8">
+                        </circle>
+                    </g>
+                </g>
+                
+                <!-- Data Flow Lines to Cyclone -->
+                <g id="dataflow">
+                    <line x1="130" y1="125" x2="400" y2="300" stroke="var(--accent-color)" stroke-width="1" opacity="0.4">
+                    </line>
+                    <line x1="130" y1="225" x2="400" y2="320" stroke="var(--accent-color)" stroke-width="1" opacity="0.4">
+                    </line>
+                    <line x1="130" y1="325" x2="400" y2="340" stroke="var(--accent-color)" stroke-width="1" opacity="0.4">
+                    </line>
+                    <line x1="130" y1="425" x2="400" y2="360" stroke="var(--accent-color)" stroke-width="1" opacity="0.4">
+                    </line>
+                    <line x1="130" y1="525" x2="400" y2="380" stroke="var(--accent-color)" stroke-width="1" opacity="0.4">
+                    </line>
+                </g>
+                
+                <!-- Cyclone Core Engine -->
+                <g id="cyclone" transform="translate(400, 300)">
+                    <circle cx="0" cy="0" r="80" stroke="var(--accent-color)" stroke-width="2" fill="none" opacity="0.3">
+                    </circle>
+                    <circle cx="0" cy="0" r="60" stroke="var(--accent-color)" stroke-width="1" fill="none" opacity="0.4">
+                    </circle>
+                    <circle cx="0" cy="0" r="40" stroke="var(--accent-color)" stroke-width="1" fill="none" opacity="0.5">
+                    </circle>
+                    <circle cx="0" cy="0" r="15" fill="var(--accent-color)" opacity="0.8">
+                    </circle>
+                    <text x="0" y="-25" text-anchor="middle" fill="var(--accent-color)" font-size="12" font-weight="600">CYCLONE</text>
+                    <text x="0" y="45" text-anchor="middle" fill="var(--text-secondary)" font-size="8">Correlation Engine</text>
+                </g>
+                
+                <!-- Agent Swarms -->
+                <g id="swarms">
+                    <!-- Swarm 1: Forensic Analysis -->
+                    <g transform="translate(700, 150)">
+                        <circle cx="0" cy="0" r="6" fill="var(--accent-color)" opacity="0.7">
+                        </circle>
+                        <circle cx="20" cy="10" r="4" fill="var(--accent-color)" opacity="0.6">
+                        </circle>
+                        <circle cx="-15" cy="8" r="5" fill="var(--accent-color)" opacity="0.6">
+                        </circle>
+                        <text x="0" y="35" text-anchor="middle" fill="var(--accent-color)" font-size="8">FORENSIC</text>
+                    </g>
+                    
+                    <!-- Swarm 2: Archive Cross-Check -->
+                    <g transform="translate(750, 250)">
+                        <circle cx="0" cy="0" r="6" fill="var(--accent-color)" opacity="0.7">
+                        </circle>
+                        <circle cx="15" cy="-8" r="4" fill="var(--accent-color)" opacity="0.6">
+                        </circle>
+                        <circle cx="-12" cy="5" r="5" fill="var(--accent-color)" opacity="0.6">
+                        </circle>
+                        <text x="0" y="30" text-anchor="middle" fill="var(--accent-color)" font-size="8">ARCHIVE</text>
+                    </g>
+                    
+                    <!-- Swarm 3: Geolocation Verify -->
+                    <g transform="translate(680, 400)">
+                        <circle cx="0" cy="0" r="6" fill="var(--accent-color)" opacity="0.7">
+                            <animate attributeName="r" values="6;10;6" dur="2.8s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="18" cy="-5" r="4" fill="var(--accent-color)" opacity="0.6">
+                            <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.0s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="-10" cy="12" r="5" fill="var(--accent-color)" opacity="0.6">
+                            <animate attributeName="r" values="5;8;5" dur="2.4s" repeatCount="indefinite"/>
+                        </circle>
+                        <text x="0" y="35" text-anchor="middle" fill="var(--accent-color)" font-size="8">GEOLOC</text>
+                    </g>
+                </g>
+                
+                <!-- Swarm Connection Lines -->
+                <g id="swarm-connections">
+                    <line x1="480" y1="300" x2="700" y2="150" stroke="var(--accent-color)" stroke-width="1" opacity="0.3" stroke-dasharray="5,5">
+                        <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="480" y1="320" x2="750" y2="250" stroke="var(--accent-color)" stroke-width="1" opacity="0.3" stroke-dasharray="5,5">
+                        <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3.4s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="480" y1="340" x2="680" y2="400" stroke="var(--accent-color)" stroke-width="1" opacity="0.3" stroke-dasharray="5,5">
+                        <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.7s" repeatCount="indefinite"/>
+                    </line>
+                </g>
+                
+                <!-- Verdict Output -->
+                <g id="verdict" transform="translate(950, 300)">
+                    <rect x="-60" y="-40" width="120" height="80" rx="12" stroke="var(--accent-color)" stroke-width="2" fill="var(--bg-secondary)" opacity="0.9"/>
+                    <text x="0" y="-15" text-anchor="middle" fill="var(--accent-color)" font-size="10" font-weight="600">VERDICT</text>
+                    <text x="0" y="0" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="700">87% FAKE</text>
+                    <text x="0" y="15" text-anchor="middle" fill="var(--text-secondary)" font-size="8">Evidence Bundle</text>
+                    <text x="0" y="28" text-anchor="middle" fill="var(--text-secondary)" font-size="8">Ready</text>
+                    <circle cx="50" cy="-20" r="4" fill="#10B981" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;0.4;0.8" dur="1s" repeatCount="indefinite"/>
+                    </circle>
+                </g>
+                
+                <!-- Data Flow Animation -->
+                <g id="data-packets">
+                    <!-- Packet 1: Video to Cyclone -->
+                    <circle r="2" fill="var(--accent-color)" opacity="0.8">
+                    </circle>
+                    <!-- Packet 2: Audio to Cyclone -->
+                    <circle r="2" fill="var(--accent-color)" opacity="0.8">
+                    </circle>
+                    <!-- Packet 3: Cyclone to Swarm -->
+                    <circle r="2" fill="var(--accent-color)" opacity="0.8">
+                    </circle>
+                </g>
+                
+                <!-- Hidden Paths for Animation -->
+                <defs>
+                    <path id="path1" d="M 130 125 Q 265 125 400 300" fill="none"/>
+                    <path id="path2" d="M 130 225 Q 265 225 400 320" fill="none"/>
+                    <path id="path3" d="M 480 300 Q 590 200 700 150" fill="none"/>
+                </defs>
+                
+                <!-- Background Grid -->
+                <defs>
+                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--border-color)" stroke-width="0.5" opacity="0.1"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)"/>
+                
+                <!-- Process Labels -->
+                <g id="labels">
+                    <text x="250" y="50" text-anchor="middle" fill="var(--text-secondary)" font-size="11" opacity="0.6">INGEST → NORMALIZE</text>
+                    <text x="600" y="100" text-anchor="middle" fill="var(--text-secondary)" font-size="11" opacity="0.6">AGENT SWARMS</text>
+                    <text x="600" y="500" text-anchor="middle" fill="var(--text-secondary)" font-size="11" opacity="0.6">CROSS-VALIDATION</text>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="platinum-container relative z-10">
+            <div class="text-center">
+                <h1 class="hero-title reveal">Cyclone</h1>
+                <div class="mt-8 mb-12">
+                    <p class="text-3xl font-light reveal" style="animation-delay: 0.2s; color: var(--text-secondary);">
+                        Multi-modal agent orchestration platform
+                    </p>
+                    <p class="text-lg font-light mt-4 reveal" style="animation-delay: 0.3s; color: var(--text-muted);">
+                        Beyond detection: Cross-modal correlation → Agent swarms → Forensic verdicts
+                    </p>
+                </div>
+                <div class="text-center space-y-2 reveal" style="animation-delay: 0.4s;">
+                    <div class="text-sm font-mono" style="color: var(--text-muted);">
+                        <span style="color: var(--accent-color);">47 detectors</span> → 
+                        <span style="color: var(--accent-color);">coincidence engine</span> → 
+                        <span style="color: var(--accent-color);">agent swarms</span> → 
+                        <span style="color: var(--accent-color);">forensic verdict</span>
+                    </div>
+                </div>
+                <div class="reveal" style="animation-delay: 0.4s;">
+                    <a href="#vision" class="inline-flex items-center text-sm uppercase tracking-wider hover-lift" style="color: var(--text-primary);">
+                        <span>Discover</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="ml-3">
+                            <path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="currentColor" stroke-width="0.5"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Vision Split -->
+    <section id="vision" class="split-section">
+        <div class="flex items-center justify-center p-20" style="background: var(--bg-secondary);">
+            <div class="max-w-xl">
+                <h2 class="section-title mb-8 reveal">Beyond Detection</h2>
+                <p class="statement mb-8 reveal" style="animation-delay: 0.1s;">
+                    From fragmented scores to forensic verdicts.
+                </p>
+                <p class="text-lg font-light leading-relaxed mb-12 reveal" style="animation-delay: 0.2s; color: var(--text-secondary);">
+                    Cyclone ingests outputs from 47+ detectors across video, audio, image, text, and metadata. 
+                    It identifies coincidences that are too strong to be random, then spins up agent swarms 
+                    for cross-validation. The result: a single forensic verdict with explainable evidence.
+                </p>
+                <div class="grid grid-cols-3 gap-8 text-center reveal" style="animation-delay: 0.3s;">
+                    <div>
+                        <div class="text-3xl font-light mb-2" style="color: var(--accent-color);">99.97%</div>
+                        <div class="text-sm" style="color: var(--text-muted);">Cross-modal accuracy</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-light mb-2" style="color: var(--accent-color);">&lt;200ms</div>
+                        <div class="text-sm" style="color: var(--text-muted);">Verdict latency</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-light mb-2" style="color: var(--accent-color);">2.5M+</div>
+                        <div class="text-sm" style="color: var(--text-muted);">Daily verdicts</div>
+                    </div>
+                </div>
+                <a href="#capability" class="cta-premium reveal" style="animation-delay: 0.3s;">
+                    <span>Explore Capability</span>
+                </a>
+            </div>
+        </div>
+        <div class="image-container">
+            <div class="h-full flex items-center justify-center" style="background: var(--bg-tertiary);">
+                <svg width="300" height="300" viewBox="0 0 300 300" class="reveal">
+                    <defs>
+                        <linearGradient id="platinumGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:var(--accent-color);stop-opacity:0.8"/>
+                            <stop offset="100%" style="stop-color:var(--accent-color);stop-opacity:0.2"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="150" cy="150" r="120" stroke="url(#platinumGrad)" stroke-width="0.5" fill="none"/>
+                    <circle cx="150" cy="150" r="80" stroke="url(#platinumGrad)" stroke-width="0.5" fill="none" opacity="0.6"/>
+                    <circle cx="150" cy="150" r="40" stroke="url(#platinumGrad)" stroke-width="0.5" fill="none" opacity="0.4"/>
+                    <circle cx="150" cy="150" r="10" fill="var(--accent-color)" opacity="0.8"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Capability -->
+    <section id="capability" class="min-h-screen py-32" style="background: var(--bg-primary);">
+        <div class="platinum-container">
+            <div class="text-center mb-24">
+                <h2 class="section-title reveal">Technology</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+                <div class="capability-card reveal" style="animation-delay: 0.1s;">
+                    <div class="mb-8">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-8" style="border: 1px solid var(--accent-color);">
+                            <span class="text-sm font-light" style="color: var(--accent-color);">01</span>
+                        </div>
+                    </div>
+                    <h3 class="text-3xl font-light mb-6">Neural Detection</h3>
+                    <p class="text-lg font-light leading-relaxed" style="color: var(--text-secondary);">
+                        Proprietary ensemble of 47 neural networks analyzing video, audio, image, and text. 
+                        Detects micro-artifacts in compression, temporal inconsistencies, and spectral anomalies 
+                        invisible to human perception.
+                    </p>
+                </div>
+                
+                <div class="capability-card reveal" style="animation-delay: 0.2s;">
+                    <div class="mb-8">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-8" style="border: 1px solid var(--accent-color);">
+                            <span class="text-sm font-light" style="color: var(--accent-color);">02</span>
+                        </div>
+                    </div>
+                    <h3 class="text-3xl font-light mb-6">Threat Analysis</h3>
+                    <p class="text-lg font-light leading-relaxed" style="color: var(--text-secondary);">
+                        Advanced context engine that evaluates malicious intent. Goes beyond detection 
+                        to assess reputational damage, financial fraud risk, and security implications 
+                        using behavioral pattern analysis.
+                    </p>
+                </div>
+                
+                <div class="capability-card reveal" style="animation-delay: 0.3s;">
+                    <div class="mb-8">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-8" style="border: 1px solid var(--accent-color);">
+                            <span class="text-sm font-light" style="color: var(--accent-color);">03</span>
+                        </div>
+                    </div>
+                    <h3 class="text-3xl font-light mb-6">Enterprise Scale</h3>
+                    <p class="text-lg font-light leading-relaxed" style="color: var(--text-secondary);">
+                        Process 2.5M+ files daily via REST API. Deploy on-premise, cloud, or edge 
+                        with SOC 2 Type II compliance. Integration with YouTube, Meta, and TikTok 
+                        for real-time content moderation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Statement -->
+    <section class="min-h-screen flex items-center justify-center" style="background: var(--bg-secondary);">
+        <div class="platinum-container text-center">
+            <p class="statement mb-16 reveal">
+                "We've got a fundamental edge on much of the world—<br/>
+                <span class="font-serif italic" style="color: var(--accent-color);">exposure from within the government."</span>
+            </p>
+            <p class="text-lg mb-8 reveal" style="color: var(--text-secondary); animation-delay: 0.1s;">
+                — Zerker Research Team on their DARPA advantage
+            </p>
+            <div class="flex justify-center gap-8 reveal" style="animation-delay: 0.2s;">
+                <div class="text-center">
+                    <div class="metric-large mb-4">99.97%</div>
+                    <div class="text-sm uppercase tracking-wider" style="color: var(--text-muted);">Accuracy</div>
+                </div>
+                <div class="w-px opacity-20" style="background: var(--border-color);"></div>
+                <div class="text-center">
+                    <div class="metric-large mb-4">&lt;200ms</div>
+                    <div class="text-sm uppercase tracking-wider" style="color: var(--text-muted);">Response</div>
+                </div>
+                <div class="w-px opacity-20" style="background: var(--border-color);"></div>
+                <div class="text-center">
+                    <div class="metric-large mb-4">24/7</div>
+                    <div class="text-sm uppercase tracking-wider" style="color: var(--text-muted);">Protection</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact -->
+    <section id="contact" class="min-h-screen flex items-center" style="background: var(--bg-primary);">
+        <div class="platinum-container">
+            <div class="max-w-4xl">
+                <h2 class="section-title mb-12 reveal">Partnership</h2>
+                <p class="statement mb-16 reveal" style="animation-delay: 0.1s;">
+                    Join Fortune 500 companies defending truth.
+                </p>
+                <div class="mb-12 reveal" style="animation-delay: 0.2s;">
+                    <div class="text-lg mb-4" style="color: var(--text-secondary);">Trusted by leaders across:</div>
+                    <div class="flex flex-wrap gap-6 text-sm uppercase tracking-wider" style="color: var(--text-muted);">
+                        <span>Social Media Platforms</span>
+                        <span>•</span>
+                        <span>Financial Services</span>
+                        <span>•</span>
+                        <span>Government Agencies</span>
+                        <span>•</span>
+                        <span>News Organizations</span>
+                    </div>
+                </div>
+                <div class="reveal" style="animation-delay: 0.2s;">
+                    <a href="mailto:hello@zerker.ai" class="inline-flex items-center text-xl hover-lift" style="color: var(--accent-color);">
+                        hello@zerker.ai
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" class="ml-4">
+                            <path d="M7 16H25M25 16L19 10M25 16L19 22" stroke="currentColor" stroke-width="0.5"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+            cursorDot.style.left = e.clientX - 2 + 'px';
+            cursorDot.style.top = e.clientY - 2 + 'px';
+        });
+        
+        // Hover effects
+        document.querySelectorAll('a, button, .hover-lift').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+            });
+        });
+        
+        // Loading screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.loading-screen').style.opacity = '0';
+                setTimeout(() => {
+                    document.querySelector('.loading-screen').style.display = 'none';
+                }, 800);
+            }, 1500);
+        });
+        
+        // Reveal animations
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+        
+        // Navigation scroll effect
+        const nav = document.querySelector('.nav-minimal');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+        
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const toggleIcon = darkModeToggle.querySelector('.toggle-icon');
+        
+        const sunIcon = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>`;
+        const moonIcon = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>`;
+        
+        darkModeToggle.addEventListener('click', () => {
+            const isDark = body.getAttribute('data-theme') === 'obsidian';
+            const newTheme = isDark ? 'platinum' : 'obsidian';
+            
+            // Apply theme
+            body.setAttribute('data-theme', newTheme);
+            
+            // Update toggle state
+            darkModeToggle.classList.toggle('dark', newTheme === 'obsidian');
+            
+            // Update icon
+            toggleIcon.innerHTML = newTheme === 'obsidian' ? moonIcon : sunIcon;
+            
+            // Store preference
+            localStorage.setItem('zerker-theme', newTheme);
+        });
+        
+        // Additional theme options
+        const themeSelector = document.getElementById('themeSelector');
+        const themeReveal = document.getElementById('themeReveal');
+        const themeOptions = document.querySelectorAll('.theme-option');
+        
+        themeReveal.addEventListener('click', () => {
+            themeSelector.classList.toggle('show');
+        });
+        
+        themeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const theme = option.dataset.theme;
+                
+                // Apply new theme
+                body.setAttribute('data-theme', theme);
+                
+                // Update active state
+                themeOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                
+                // Hide selector
+                themeSelector.classList.remove('show');
+                
+                // Store theme preference
+                localStorage.setItem('zerker-theme', theme);
+            });
+        });
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('zerker-theme') || 'platinum';
+        body.setAttribute('data-theme', savedTheme);
+        
+        // Set initial toggle state
+        if (savedTheme === 'obsidian') {
+            darkModeToggle.classList.add('dark');
+            toggleIcon.innerHTML = moonIcon;
+        } else {
+            darkModeToggle.classList.remove('dark');
+            toggleIcon.innerHTML = sunIcon;
+        }
+        
+        // Set active theme option if not platinum/obsidian
+        if (savedTheme !== 'platinum' && savedTheme !== 'obsidian') {
+            document.querySelector(`[data-theme="${savedTheme}"]`)?.classList.add('active');
+        }
+        
+        // Hide selector on outside click
+        document.addEventListener('click', (e) => {
+            if (!themeSelector.contains(e.target) && !themeReveal.contains(e.target)) {
+                themeSelector.classList.remove('show');
+            }
+        });
+        
+        // Message listener for theme changes from parent
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'applyTheme') {
+                const theme = event.data.theme;
+                body.setAttribute('data-theme', theme);
+                
+                if (theme === 'obsidian' || theme === 'platinum') {
+                    darkModeToggle.classList.toggle('dark', theme === 'obsidian');
+                    toggleIcon.innerHTML = theme === 'obsidian' ? moonIcon : sunIcon;
+                } else {
+                    themeOptions.forEach(opt => opt.classList.remove('active'));
+                    document.querySelector(`[data-theme="${theme}"]`)?.classList.add('active');
+                }
+            }
+        });
+        
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZERKER | Truth in the Age of Synthesis</title>
+    <meta name="description" content="The definitive AI integrity platform. Protecting Fortune 500 companies and governments from synthetic media threats.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Editorial+New:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        :root {
+            --obsidian: #0A0A0A;
+            --midnight: #1A1A1A;
+            --steel: #2A2A2A;
+            --smoke: #F5F5F5;
+            --pure: #FFFFFF;
+            --signal: #00FF88;
+            --alert: #FF0055;
+            --caution: #FFD700;
+            --trust: #0066FF;
+            --depth: #3B82F6;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            background: var(--obsidian);
+            cursor: none;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--pure);
+            overflow-x: hidden;
+            position: relative;
+            background: var(--obsidian);
+        }
+        
+        /* Executive Typography */
+        .serif {
+            font-family: 'Editorial New', Georgia, serif;
+        }
+        
+        /* Premium Cursor */
+        .cursor-main,
+        .cursor-dot {
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-main {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--pure);
+            border-radius: 50%;
+            transition: all 0.15s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: translate(-50%, -50%);
+        }
+        
+        .cursor-dot {
+            width: 4px;
+            height: 4px;
+            background: var(--pure);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .cursor-hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            border-color: var(--signal);
+        }
+        
+        /* Executive Navigation */
+        .nav-executive {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 2rem 4rem;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(0);
+        }
+        
+        .nav-executive.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 4rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Hero Title Animation */
+        .hero-word {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
+        
+        .hero-letter {
+            display: inline-block;
+            transform: translateY(110%);
+            transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .hero-word.active .hero-letter {
+            transform: translateY(0);
+        }
+        
+        /* Strategic Grid */
+        .grid-line {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.6s ease;
+        }
+        
+        .grid-line-v {
+            width: 1px;
+            height: 100%;
+            top: 0;
+        }
+        
+        .grid-line-h {
+            width: 100%;
+            height: 1px;
+            left: 0;
+        }
+        
+        .grid-line.active {
+            background: rgba(0, 255, 136, 0.1);
+        }
+        
+        /* Data Visualization */
+        @keyframes data-pulse {
+            0%, 100% { 
+                r: 2;
+                opacity: 0.6;
+            }
+            50% { 
+                r: 4;
+                opacity: 1;
+            }
+        }
+        
+        @keyframes flow-right {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        @keyframes threat-scan {
+            0% { transform: translateY(-100%) scaleX(1); }
+            50% { transform: translateY(0%) scaleX(1.5); }
+            100% { transform: translateY(100%) scaleX(1); }
+        }
+        
+        /* Executive CTAs */
+        .cta-executive {
+            position: relative;
+            display: inline-flex;
+            padding: 1.5rem 3rem;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .cta-executive::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--signal);
+            transition: left 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .cta-executive:hover::before {
+            left: 0;
+        }
+        
+        .cta-executive span {
+            position: relative;
+            z-index: 1;
+            transition: color 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .cta-executive:hover span {
+            color: var(--obsidian);
+        }
+        
+        /* Metric Cards */
+        .metric-card {
+            position: relative;
+            background: rgba(26, 26, 26, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--signal), var(--trust), var(--signal));
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            z-index: -1;
+        }
+        
+        .metric-card:hover::before {
+            opacity: 0.3;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 255, 136, 0.3);
+        }
+        
+        /* Threat Level Indicator */
+        .threat-indicator {
+            position: relative;
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .threat-level {
+            position: absolute;
+            height: 100%;
+            background: linear-gradient(90deg, var(--signal) 0%, var(--caution) 50%, var(--alert) 100%);
+            transition: width 2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        /* Executive Loading */
+        .loading-executive {
+            position: fixed;
+            inset: 0;
+            background: var(--obsidian);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .loading-text {
+            font-size: 0.875rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fade-in 0.8s ease forwards;
+        }
+        
+        @keyframes fade-in {
+            to { opacity: 1; }
+        }
+        
+        /* Reveal Animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        /* Premium Hover States */
+        .hover-glow {
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        
+        .hover-glow::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.4) 0%, transparent 70%);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        
+        .hover-glow:hover::after {
+            width: 200%;
+            height: 200%;
+        }
+        
+        /* Case Study Cards */
+        .case-card {
+            position: relative;
+            height: 600px;
+            background: var(--midnight);
+            overflow: hidden;
+            cursor: none;
+        }
+        
+        .case-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.9) 100%);
+            z-index: 1;
+        }
+        
+        .case-visual {
+            position: absolute;
+            inset: 0;
+            transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .case-card:hover .case-visual {
+            transform: scale(1.05);
+        }
+        
+        /* Neural Network Animation */
+        .neural-path {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: draw-path 2s ease forwards;
+        }
+        
+        @keyframes draw-path {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        /* Response Time Visualization */
+        .response-bar {
+            position: relative;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+        
+        .response-indicator {
+            position: absolute;
+            height: 100%;
+            width: 20%;
+            background: var(--signal);
+            animation: response-slide 2s ease-in-out infinite;
+        }
+        
+        @keyframes response-slide {
+            0% { left: -20%; }
+            100% { left: 100%; }
+        }
+        
+        /* Mobile Excellence */
+        @media (max-width: 768px) {
+            .nav-executive {
+                padding: 1.5rem 2rem;
+            }
+            
+            .hero-title {
+                font-size: clamp(3rem, 10vw, 6rem);
+            }
+            
+            .section-padding {
+                padding: 4rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Premium Cursor -->
+    <div class="cursor-main"></div>
+    <div class="cursor-dot"></div>
+    
+    <!-- Executive Loading -->
+    <div class="loading-executive">
+        <div class="loading-content text-center">
+            <div class="loading-text mb-8">INITIALIZING TRUTH PROTOCOLS</div>
+            <div class="w-32 h-px bg-white/20 mx-auto overflow-hidden">
+                <div class="h-full w-full bg-white/60 animate-pulse"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Strategic Grid Background -->
+    <div class="fixed inset-0 pointer-events-none" style="z-index: 1;">
+        <div class="grid-line grid-line-v" style="left: 20%;"></div>
+        <div class="grid-line grid-line-v" style="left: 40%;"></div>
+        <div class="grid-line grid-line-v" style="left: 60%;"></div>
+        <div class="grid-line grid-line-v" style="left: 80%;"></div>
+        <div class="grid-line grid-line-h" style="top: 20%;"></div>
+        <div class="grid-line grid-line-h" style="top: 40%;"></div>
+        <div class="grid-line grid-line-h" style="top: 60%;"></div>
+        <div class="grid-line grid-line-h" style="top: 80%;"></div>
+    </div>
+    
+    <!-- Executive Navigation -->
+    <nav class="nav-executive" style="z-index: 100;">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center gap-12">
+                <a href="#" class="text-sm font-medium tracking-wider hover:text-gray-300 transition-colors">ZERKER</a>
+                <div class="hidden md:flex items-center gap-8 text-xs uppercase tracking-wider">
+                    <a href="#truth" class="hover:text-gray-300 transition-colors">The Truth Crisis</a>
+                    <a href="#solution" class="hover:text-gray-300 transition-colors">Our Solution</a>
+                    <a href="#impact" class="hover:text-gray-300 transition-colors">Global Impact</a>
+                </div>
+            </div>
+            <a href="#partnership" class="text-xs uppercase tracking-wider border border-white/20 px-6 py-3 hover:bg-white hover:text-black transition-all">
+                Partner With Us
+            </a>
+        </div>
+    </nav>
+    
+    <!-- Hero: The Stakes -->
+    <section class="min-h-screen flex items-center relative overflow-hidden" style="z-index: 10;">
+        <!-- Dynamic Background Visualization -->
+        <div class="absolute inset-0 opacity-20">
+            <svg class="w-full h-full" viewBox="0 0 1920 1080">
+                <!-- Threat Detection Waves -->
+                <defs>
+                    <radialGradient id="threatGradient">
+                        <stop offset="0%" style="stop-color:var(--signal);stop-opacity:0.8" />
+                        <stop offset="50%" style="stop-color:var(--caution);stop-opacity:0.4" />
+                        <stop offset="100%" style="stop-color:var(--alert);stop-opacity:0" />
+                    </radialGradient>
+                </defs>
+                
+                <!-- Animated Detection Pulses -->
+                <circle cx="200" cy="200" r="50" fill="url(#threatGradient)">
+                    <animate attributeName="r" values="50;150;50" dur="4s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="4s" repeatCount="indefinite" />
+                </circle>
+                
+                <circle cx="1720" cy="880" r="80" fill="url(#threatGradient)">
+                    <animate attributeName="r" values="80;200;80" dur="5s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.6;0.1;0.6" dur="5s" repeatCount="indefinite" />
+                </circle>
+                
+                <!-- Data Flow Lines -->
+                <path d="M0,540 Q480,440 960,540 T1920,540" stroke="rgba(0,255,136,0.2)" stroke-width="1" fill="none">
+                    <animate attributeName="stroke-dasharray" values="0 1920;1920 0" dur="3s" repeatCount="indefinite" />
+                </path>
+            </svg>
+        </div>
+        
+        <div class="container mx-auto px-8 relative">
+            <div class="max-w-6xl">
+                <!-- Strategic Opening -->
+                <div class="mb-12 reveal-up">
+                    <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest mb-8">
+                        <span class="w-8 h-px bg-gradient-to-r from-transparent to-white/40"></span>
+                        <span class="text-white/60">The Synthetic Media Crisis</span>
+                    </div>
+                </div>
+                
+                <!-- Hero Statement -->
+                <h1 class="mb-8">
+                    <div class="hero-word">
+                        <span class="hero-letter" style="transition-delay: 0.02s">I</span>
+                        <span class="hero-letter" style="transition-delay: 0.04s">n</span>
+                        <span class="hero-letter" style="transition-delay: 0.06s">&nbsp;</span>
+                        <span class="hero-letter" style="transition-delay: 0.08s">2</span>
+                        <span class="hero-letter" style="transition-delay: 0.10s">0</span>
+                        <span class="hero-letter" style="transition-delay: 0.12s">2</span>
+                        <span class="hero-letter" style="transition-delay: 0.14s">5</span>
+                        <span class="hero-letter" style="transition-delay: 0.16s">,</span>
+                    </div>
+                    <div class="hero-word">
+                        <span class="hero-letter" style="transition-delay: 0.20s">t</span>
+                        <span class="hero-letter" style="transition-delay: 0.22s">r</span>
+                        <span class="hero-letter" style="transition-delay: 0.24s">u</span>
+                        <span class="hero-letter" style="transition-delay: 0.26s">t</span>
+                        <span class="hero-letter" style="transition-delay: 0.28s">h</span>
+                    </div>
+                    <br>
+                    <div class="hero-word">
+                        <span class="hero-letter" style="transition-delay: 0.32s">i</span>
+                        <span class="hero-letter" style="transition-delay: 0.34s">s</span>
+                        <span class="hero-letter" style="transition-delay: 0.36s">&nbsp;</span>
+                        <span class="hero-letter" style="transition-delay: 0.38s">a</span>
+                        <span class="hero-letter" style="transition-delay: 0.40s">&nbsp;</span>
+                    </div>
+                    <div class="hero-word">
+                        <span class="hero-letter text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400" style="transition-delay: 0.44s">l</span>
+                        <span class="hero-letter text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400" style="transition-delay: 0.46s">u</span>
+                        <span class="hero-letter text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400" style="transition-delay: 0.48s">x</span>
+                        <span class="hero-letter text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400" style="transition-delay: 0.50s">u</span>
+                        <span class="hero-letter text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400" style="transition-delay: 0.52s">r</span>
+                        <span class="hero-letter text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400" style="transition-delay: 0.54s">y</span>
+                    </div>
+                </h1>
+                
+                <!-- Executive Summary -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mt-16">
+                    <div class="reveal-up" style="animation-delay: 0.6s;">
+                        <p class="text-xl leading-relaxed text-gray-300 mb-8">
+                            By 2026, <span class="text-white font-medium">87% of online content will be AI-generated</span>. 
+                            Deepfakes cost enterprises <span class="text-white font-medium">$12.3 billion annually</span> in fraud alone. 
+                            The truth is under siege.
+                        </p>
+                        <div class="flex items-center gap-8">
+                            <a href="#solution" class="cta-executive border border-white/20 text-white hover-glow">
+                                <span>Explore Our Defense</span>
+                            </a>
+                            <a href="#demo" class="text-sm uppercase tracking-wider hover:text-gray-300 transition-colors flex items-center gap-2">
+                                <span>Watch Demo</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Live Threat Monitor -->
+                    <div class="reveal-up" style="animation-delay: 0.8s;">
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-sm uppercase tracking-wider">Global Threat Level</h3>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                                    <span class="text-xs text-gray-400">LIVE</span>
+                                </div>
+                            </div>
+                            <div class="threat-indicator mb-4">
+                                <div class="threat-level" style="width: 73%;"></div>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4 text-center">
+                                <div>
+                                    <div class="text-2xl font-light">2.5M</div>
+                                    <div class="text-xs text-gray-400 uppercase">Daily Scans</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-light text-yellow-400">73%</div>
+                                    <div class="text-xs text-gray-400 uppercase">Threat Level</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-light">184ms</div>
+                                    <div class="text-xs text-gray-400 uppercase">Avg Response</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- The Truth Crisis -->
+    <section id="truth" class="py-32 relative" style="z-index: 10;">
+        <div class="container mx-auto px-8">
+            <!-- Section Header -->
+            <div class="max-w-4xl mb-24">
+                <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest mb-8 reveal-up">
+                    <span class="w-8 h-px bg-gradient-to-r from-transparent to-white/40"></span>
+                    <span class="text-white/60">The Stakes</span>
+                </div>
+                <h2 class="text-6xl md:text-7xl font-light mb-8 reveal-up" style="animation-delay: 0.1s;">
+                    Truth is becoming<br>
+                    <span class="serif italic font-light text-gray-400">extinct</span>
+                </h2>
+                <p class="text-xl text-gray-300 leading-relaxed reveal-up" style="animation-delay: 0.2s;">
+                    Every second, 47,000 pieces of synthetic content flood the internet. 
+                    Your brand, your leaders, your truth—all vulnerable to perfect forgeries 
+                    that current detection can't stop.
+                </p>
+            </div>
+            
+            <!-- Crisis Metrics -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="metric-card p-8 rounded-lg reveal-up" style="animation-delay: 0.3s;">
+                    <div class="text-5xl font-light mb-4 bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">87%</div>
+                    <div class="text-sm uppercase tracking-wider text-gray-400 mb-2">Synthetic by 2026</div>
+                    <p class="text-sm text-gray-500">AI-generated content will dominate every platform</p>
+                </div>
+                
+                <div class="metric-card p-8 rounded-lg reveal-up" style="animation-delay: 0.4s;">
+                    <div class="text-5xl font-light mb-4 bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent">$12.3B</div>
+                    <div class="text-sm uppercase tracking-wider text-gray-400 mb-2">Annual Fraud Loss</div>
+                    <p class="text-sm text-gray-500">Direct financial impact from deepfake attacks</p>
+                </div>
+                
+                <div class="metric-card p-8 rounded-lg reveal-up" style="animation-delay: 0.5s;">
+                    <div class="text-5xl font-light mb-4 bg-gradient-to-r from-yellow-500 to-green-500 bg-clip-text text-transparent">4min</div>
+                    <div class="text-sm uppercase tracking-wider text-gray-400 mb-2">To Viral Spread</div>
+                    <p class="text-sm text-gray-500">Average time for deepfakes to reach millions</p>
+                </div>
+                
+                <div class="metric-card p-8 rounded-lg reveal-up" style="animation-delay: 0.6s;">
+                    <div class="text-5xl font-light mb-4 bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">0.3%</div>
+                    <div class="text-sm uppercase tracking-wider text-gray-400 mb-2">Human Detection</div>
+                    <p class="text-sm text-gray-500">Success rate of human deepfake identification</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- The Solution -->
+    <section id="solution" class="py-32 relative overflow-hidden" style="z-index: 10;">
+        <!-- Neural Network Background -->
+        <div class="absolute inset-0 opacity-10">
+            <svg class="w-full h-full" viewBox="0 0 1920 1080">
+                <defs>
+                    <linearGradient id="neuralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:var(--trust);stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:var(--signal);stop-opacity:0.2" />
+                    </linearGradient>
+                </defs>
+                
+                <!-- Neural Paths -->
+                <path class="neural-path" d="M100,200 Q500,100 900,300 T1300,200" stroke="url(#neuralGradient)" stroke-width="2" fill="none" />
+                <path class="neural-path" d="M200,500 Q600,400 1000,600 T1400,500" stroke="url(#neuralGradient)" stroke-width="2" fill="none" style="animation-delay: 0.5s;" />
+                <path class="neural-path" d="M300,800 Q700,700 1100,900 T1500,800" stroke="url(#neuralGradient)" stroke-width="2" fill="none" style="animation-delay: 1s;" />
+                
+                <!-- Neural Nodes -->
+                <circle cx="500" cy="200" r="4" fill="var(--signal)">
+                    <animate attributeName="r" values="4;8;4" dur="2s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="900" cy="500" r="4" fill="var(--trust)">
+                    <animate attributeName="r" values="4;8;4" dur="2.5s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="1300" cy="800" r="4" fill="var(--signal)">
+                    <animate attributeName="r" values="4;8;4" dur="3s" repeatCount="indefinite" />
+                </circle>
+            </svg>
+        </div>
+        
+        <div class="container mx-auto px-8 relative">
+            <!-- Section Header -->
+            <div class="max-w-4xl mb-24">
+                <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest mb-8 reveal-up">
+                    <span class="w-8 h-px bg-gradient-to-r from-transparent to-white/40"></span>
+                    <span class="text-white/60">Our Answer</span>
+                </div>
+                <h2 class="text-6xl md:text-7xl font-light mb-8 reveal-up" style="animation-delay: 0.1s;">
+                    ZERKER protects<br>
+                    <span class="bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">what's real</span>
+                </h2>
+            </div>
+            
+            <!-- Core Technology -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32">
+                <div class="reveal-up" style="animation-delay: 0.2s;">
+                    <h3 class="text-3xl font-light mb-8">Beyond Detection: Forensic Truth</h3>
+                    <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                        Our Cyclone™ engine doesn't just detect deepfakes—it builds 
+                        forensic cases. 47 neural networks analyze every pixel, frequency, 
+                        and metadata point to deliver court-admissible evidence packages.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full border border-green-500/30 flex items-center justify-center flex-shrink-0">
+                                <span class="text-green-400 text-sm">01</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg mb-2">Multi-Modal Analysis</h4>
+                                <p class="text-gray-400">Simultaneous processing of video, audio, image, text, and metadata through specialized neural networks</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full border border-blue-500/30 flex items-center justify-center flex-shrink-0">
+                                <span class="text-blue-400 text-sm">02</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg mb-2">Agent Orchestration</h4>
+                                <p class="text-gray-400">Autonomous swarms verify findings through geolocation, archive cross-reference, and blockchain validation</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full border border-purple-500/30 flex items-center justify-center flex-shrink-0">
+                                <span class="text-purple-400 text-sm">03</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg mb-2">Forensic Packaging</h4>
+                                <p class="text-gray-400">Complete evidence bundles with chain of custody, ready for legal proceedings and public disclosure</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Live Performance Monitor -->
+                <div class="reveal-up" style="animation-delay: 0.4s;">
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8">
+                        <h3 class="text-2xl font-light mb-8">Real-Time Performance</h3>
+                        
+                        <!-- Accuracy Meter -->
+                        <div class="mb-8">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm text-gray-400">Detection Accuracy</span>
+                                <span class="text-sm font-mono">99.97%</span>
+                            </div>
+                            <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-green-500 to-blue-500 rounded-full" style="width: 99.97%;"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Response Time -->
+                        <div class="mb-8">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm text-gray-400">Average Response Time</span>
+                                <span class="text-sm font-mono">184ms</span>
+                            </div>
+                            <div class="response-bar">
+                                <div class="response-indicator"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Processing Stats -->
+                        <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <div class="text-3xl font-light mb-2">2.5M+</div>
+                                <div class="text-xs text-gray-400 uppercase">Daily Verdicts</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-light mb-2">47</div>
+                                <div class="text-xs text-gray-400 uppercase">Neural Networks</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Status Indicators -->
+                        <div class="mt-8 pt-8 border-t border-white/10">
+                            <div class="grid grid-cols-3 gap-4 text-xs">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                    <span class="text-gray-400">All Systems Operational</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                    <span class="text-gray-400">API Available</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
+                                    <span class="text-gray-400">Processing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technology Stack -->
+            <div class="bg-gradient-to-b from-white/5 to-transparent rounded-2xl p-12 reveal-up">
+                <h3 class="text-3xl font-light mb-12 text-center">Enterprise-Grade Architecture</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-blue-500/20 to-green-500/20 flex items-center justify-center">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl mb-3">Cloud-Native Scale</h4>
+                        <p class="text-gray-400">Auto-scaling infrastructure processing millions of files daily across global regions</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L2 9V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H9V12H15V22H20C20.5304 22 21.0391 21.7893 21.4142 21.4142C21.7893 21.0391 22 20.5304 22 20V9L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl mb-3">On-Premise Ready</h4>
+                        <p class="text-gray-400">Deploy within your infrastructure for maximum security and compliance</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 16V8C20.9996 7.64927 20.9071 7.30481 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.30481 3.00036 7.64927 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl mb-3">Edge Deployment</h4>
+                        <p class="text-gray-400">Ultra-low latency detection at content delivery networks worldwide</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Global Impact -->
+    <section id="impact" class="py-32 relative" style="z-index: 10;">
+        <div class="container mx-auto px-8">
+            <!-- Section Header -->
+            <div class="max-w-4xl mb-24">
+                <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest mb-8 reveal-up">
+                    <span class="w-8 h-px bg-gradient-to-r from-transparent to-white/40"></span>
+                    <span class="text-white/60">Proven Results</span>
+                </div>
+                <h2 class="text-6xl md:text-7xl font-light mb-8 reveal-up" style="animation-delay: 0.1s;">
+                    Trusted by those who<br>
+                    <span class="serif italic font-light text-gray-400">shape the world</span>
+                </h2>
+            </div>
+            
+            <!-- Case Studies Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+                <!-- Case 1: Social Media -->
+                <div class="case-card rounded-lg reveal-up" style="animation-delay: 0.2s;">
+                    <div class="case-visual bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-12 z-10">
+                        <div class="text-sm uppercase tracking-wider text-gray-400 mb-4">Social Media Platform</div>
+                        <h3 class="text-3xl font-light mb-4">1.2B Daily Users Protected</h3>
+                        <p class="text-gray-300 mb-6">Prevented 47M deepfake uploads in Q3 2024, protecting user trust and platform integrity.</p>
+                        <div class="flex items-center gap-6 text-sm">
+                            <div>
+                                <span class="text-2xl font-light text-green-400">99.8%</span>
+                                <span class="text-gray-400 ml-2">Accuracy</span>
+                            </div>
+                            <div>
+                                <span class="text-2xl font-light text-blue-400">127ms</span>
+                                <span class="text-gray-400 ml-2">Response</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Case 2: Financial Services -->
+                <div class="case-card rounded-lg reveal-up" style="animation-delay: 0.3s;">
+                    <div class="case-visual bg-gradient-to-br from-green-600/20 to-yellow-600/20"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-12 z-10">
+                        <div class="text-sm uppercase tracking-wider text-gray-400 mb-4">Global Bank</div>
+                        <h3 class="text-3xl font-light mb-4">$847M Fraud Prevented</h3>
+                        <p class="text-gray-300 mb-6">Stopped deepfake-enabled wire fraud attempts targeting high-net-worth clients.</p>
+                        <div class="flex items-center gap-6 text-sm">
+                            <div>
+                                <span class="text-2xl font-light text-green-400">100%</span>
+                                <span class="text-gray-400 ml-2">Detection</span>
+                            </div>
+                            <div>
+                                <span class="text-2xl font-light text-yellow-400">$847M</span>
+                                <span class="text-gray-400 ml-2">Saved</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Global Metrics -->
+            <div class="bg-gradient-to-b from-white/5 to-transparent rounded-2xl p-12 reveal-up">
+                <h3 class="text-3xl font-light mb-12 text-center">Global Defense Network</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-5xl font-light mb-4">147</div>
+                        <div class="text-sm uppercase tracking-wider text-gray-400">Countries Protected</div>
+                    </div>
+                    <div>
+                        <div class="text-5xl font-light mb-4">2.5B+</div>
+                        <div class="text-sm uppercase tracking-wider text-gray-400">Files Analyzed Daily</div>
+                    </div>
+                    <div>
+                        <div class="text-5xl font-light mb-4">Fortune</div>
+                        <div class="text-sm uppercase tracking-wider text-gray-400">500 Partners</div>
+                    </div>
+                    <div>
+                        <div class="text-5xl font-light mb-4">24/7</div>
+                        <div class="text-sm uppercase tracking-wider text-gray-400">Global Operations</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial -->
+            <div class="max-w-4xl mx-auto mt-24 text-center reveal-up">
+                <blockquote class="text-2xl md:text-3xl font-light leading-relaxed mb-8 serif italic">
+                    "In an era where reality itself is under attack, ZERKER isn't just a vendor—they're 
+                    our first line of defense. Their technology saved our CEO from a deepfake crisis 
+                    that would have cost billions in market value."
+                </blockquote>
+                <cite class="text-gray-400 not-italic">
+                    — CISO, Fortune 100 Technology Company
+                </cite>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Partnership CTA -->
+    <section id="partnership" class="py-32 relative" style="z-index: 10;">
+        <div class="container mx-auto px-8">
+            <div class="max-w-6xl mx-auto bg-gradient-to-br from-white/10 to-white/5 rounded-2xl p-16 md:p-24 text-center reveal-up">
+                <h2 class="text-5xl md:text-6xl font-light mb-8">
+                    The truth needs<br>
+                    <span class="bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">defenders</span>
+                </h2>
+                <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+                    Join the world's most important organizations in the fight against synthetic deception. 
+                    Every second matters. Every detection counts. Every truth preserved shapes tomorrow.
+                </p>
+                
+                <!-- CTA Options -->
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                    <a href="mailto:partnership@zerker.ai" class="cta-executive bg-white text-black hover:bg-gray-100">
+                        <span>Schedule Executive Briefing</span>
+                    </a>
+                    <a href="#demo" class="cta-executive border border-white/20 text-white">
+                        <span>Request Technical Demo</span>
+                    </a>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="mt-16 pt-16 border-t border-white/10">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+                        <div>
+                            <div class="text-gray-400 mb-2">Global Headquarters</div>
+                            <div>San Francisco, CA</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 mb-2">Enterprise Sales</div>
+                            <div>enterprise@zerker.ai</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 mb-2">24/7 Support</div>
+                            <div>+1 (888) ZERKER-1</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-16 border-t border-white/10" style="z-index: 10;">
+        <div class="container mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="flex items-center gap-8">
+                    <span class="text-sm font-medium tracking-wider">ZERKER</span>
+                    <span class="text-xs text-gray-400">© 2025 Zerker Inc. All rights reserved.</span>
+                </div>
+                <div class="flex items-center gap-8 text-xs uppercase tracking-wider text-gray-400">
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <a href="#" class="hover:text-white transition-colors">SOC 2</a>
+                    <a href="#" class="hover:text-white transition-colors">Careers</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Premium Cursor
+        const cursor = document.querySelector('.cursor-main');
+        const cursorDot = document.querySelector('.cursor-dot');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let dotX = 0, dotY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        // Smooth cursor animation
+        function animateCursor() {
+            // Main cursor follows with delay
+            const dx = mouseX - cursorX;
+            const dy = mouseY - cursorY;
+            cursorX += dx * 0.2;
+            cursorY += dy * 0.2;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            // Dot follows immediately
+            dotX += (mouseX - dotX) * 0.8;
+            dotY += (mouseY - dotY) * 0.8;
+            cursorDot.style.left = dotX + 'px';
+            cursorDot.style.top = dotY + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+        
+        // Hover effects
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+        });
+        
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.loading-executive').style.opacity = '0';
+                setTimeout(() => {
+                    document.querySelector('.loading-executive').style.display = 'none';
+                    // Trigger hero animation
+                    document.querySelectorAll('.hero-word').forEach((word, i) => {
+                        setTimeout(() => word.classList.add('active'), i * 100);
+                    });
+                }, 1000);
+            }, 1500);
+        });
+        
+        // Navigation Scroll
+        const nav = document.querySelector('.nav-executive');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            
+            if (currentScroll > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            
+            // Hide/show on scroll
+            if (currentScroll > lastScroll && currentScroll > 500) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            lastScroll = currentScroll;
+        });
+        
+        // Reveal animations
+        const reveals = document.querySelectorAll('.reveal-up');
+        const revealOnScroll = () => {
+            reveals.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
+                if (isVisible && !el.classList.contains('active')) {
+                    el.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+        
+        // Grid line animations
+        const gridLines = document.querySelectorAll('.grid-line');
+        setInterval(() => {
+            const randomLine = gridLines[Math.floor(Math.random() * gridLines.length)];
+            randomLine.classList.add('active');
+            setTimeout(() => randomLine.classList.remove('active'), 2000);
+        }, 500);
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        
+        // Threat level animation
+        const threatLevel = document.querySelector('.threat-level');
+        if (threatLevel) {
+            // Simulate changing threat levels
+            setInterval(() => {
+                const newLevel = 65 + Math.random() * 20; // 65-85%
+                threatLevel.style.width = newLevel + '%';
+            }, 3000);
+        }
+        
+        // Performance metrics animation
+        const animateValue = (el, start, end, duration) => {
+            const startTime = performance.now();
+            const update = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const current = start + (end - start) * progress;
+                el.textContent = current.toFixed(0);
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            };
+            requestAnimationFrame(update);
+        };
+        
+        // Animate metrics on scroll
+        const metricsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const metric = entry.target;
+                    const value = parseInt(metric.textContent);
+                    if (!metric.dataset.animated) {
+                        metric.dataset.animated = 'true';
+                        animateValue(metric, 0, value, 2000);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('.metric-card .text-5xl').forEach(metric => {
+            metricsObserver.observe(metric);
+        });
+    </script>
+</body>
+</html>
