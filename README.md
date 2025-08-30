@@ -1,4 +1,4 @@
-# 🏆 ZERKER Brand System - AKQA Executive Edition
+# 🚀 ZERKER Landing - Executive Brand Experience
 
 > **Award-winning logo maker with revolutionary UX design**
 
@@ -7,9 +7,9 @@ A sophisticated brand identity system featuring multiple logo generators, execut
 ## 🎯 Live Experiences
 
 ### **Main Experiences**
-- 🎨 **[AKQA Executive Edition](https://rezker1.github.io/logomaker-akqa/zerker-akqa-executive.html)** - The masterpiece
-- 💎 **[Brand Showcase](https://rezker1.github.io/logomaker-akqa/brand-index.html)** - Premium brand presentation
-- 🏠 **[Home](https://rezker1.github.io/logomaker-akqa/)** - Main landing page
+- 🎨 **[AKQA Executive Edition](https://rezker1.github.io/zerker-landing/zerker-akqa-executive.html)** - The masterpiece
+- 💎 **[Brand Showcase](https://rezker1.github.io/zerker-landing/brand-index.html)** - Premium brand presentation
+- 🏠 **[Home](https://rezker1.github.io/zerker-landing/)** - Main landing page
 
 ### **Logo Generation Systems**
 - **Premium System** - Sophisticated corporate branding
@@ -52,10 +52,10 @@ This experience is designed to win:
 
 ```bash
 # Clone the repository
-git clone https://github.com/rezker1/logomaker-akqa.git
+git clone https://github.com/rezker1/zerker-landing.git
 
 # Navigate to project
-cd logomaker-akqa
+cd zerker-landing
 
 # Install dependencies (for local server)
 npm install
@@ -90,7 +90,7 @@ open http://localhost:8080
 ## 📁 Project Structure
 
 ```
-logomaker-akqa/
+zerker-landing/
 ├── zerker-akqa-executive.html     # 🏆 Executive masterpiece
 ├── brand-index.html               # Premium brand showcase
 ├── index.html                     # Main landing page
@@ -150,14 +150,14 @@ live-server --port=8080 --host=localhost
 
 ### **Deployment**
 The site is automatically deployed to GitHub Pages at:
-**https://rezker1.github.io/logomaker-akqa/**
+**https://rezker1.github.io/zerker-landing/**
 
 ## 📞 Contact & Attribution
 
 Created with **Claude Code** - The AI-powered development assistant
 
-- **GitHub**: [logomaker-akqa](https://github.com/rezker1/logomaker-akqa)
-- **Live Site**: [rezker1.github.io/logomaker-akqa](https://rezker1.github.io/logomaker-akqa/)
+- **GitHub**: [zerker-landing](https://github.com/rezker1/zerker-landing)
+- **Live Site**: [rezker1.github.io/zerker-landing](https://rezker1.github.io/zerker-landing/)
 
 ---
 
